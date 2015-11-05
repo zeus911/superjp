@@ -36,6 +36,11 @@ def GetSelected():
         if host.get('isSelected'):
             return host.get('id')
 
+def connhost_bykey(ip,user,key,port):
+    os.system('auto_key_login.exp' + ' ' + ip + ' ' + user +  ' '  + key + ' ' + port)
+
+def connhost_bypwd(ip,user,pwd,port):
+    os.system('auto_login.exp' + ' ' + ip + ' ' + user +  ' '  + pwd + ' ' + port)
 
 def SetIDSelected(id):
     host = findhost(id)
@@ -48,6 +53,9 @@ def SetIDUnSelected(id):
 def ConnectHost(id):
     selhost = findhost(id)
     ip = selhost.get('host')
+    user = selhost.get('user')
+    port = selhost.get('port')
+
     remark = selhost.get('remarks')
     print 'Are sure you want to Connect to host:',
     print use_style(ip + " " + remark, fore='red'),
@@ -56,8 +64,15 @@ def ConnectHost(id):
     if (conncmd == 'n' or conncmd == 'N'):
         return False
     else:
-        os.system('jump' + ' ' + ip)
-        exit(0)
+        if selhost.get('key'):
+            key = selhost.get('key')
+            print key
+            connhost_bykey(ip,user,key,port)
+        else:
+            pwd = selhost.get('password')
+            print pwd
+            connhost_bypwd(ip,user,pwd,port)
+
 #
 #list()
 #print findhost(3)
