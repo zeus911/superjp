@@ -70,28 +70,21 @@ def ConnectHost(id):
         else:
             pwd = selhost.get('password')
             connhost_bypwd(ip,user,pwd,port)
-    #exit()
+    exit()
 
 #
 #list()
 #print findhost(3)
 #
 #
-_UP = "'k'"
-_DOWN = "'j'"
-
-_ESC1 = "'q'"
-_ESC2 = "'q'"
-
-_ENTER = "'\\r'"
-
+UP = "'\x1b[A'"
+DOWN = "'\x1b[B'"
+ESC = "'\x1b\x1b'"
 while running:
     os.system('clear')
     list()
-    print("Press 'Q' or 'q' to quit:\n")
-    cmd = repr(readchar.readchar())
-    print cmd
-    if (cmd == _ESC1 or cmd == _ESC2):
+    cmd = raw_input("Press 'Q' to quit:\n")
+    if (cmd == 'q'):
         break;
     elif cmd.isdigit():
         if (int(cmd) >= 0 and int(cmd) <= 100):
@@ -100,7 +93,7 @@ while running:
 
 
 
-    elif (cmd == _DOWN):
+    elif (cmd == ''):
         if ConnList[-1].get('id') == GetSelected():
             CurHostid = GetSelected()
             SetIDUnSelected(CurHostid)
@@ -110,17 +103,7 @@ while running:
         SetIDUnSelected(CurHostid)
         SetIDSelected(CurHostid + 1)
 
-    elif (cmd == _UP):
-        if ConnList[1].get('id') == GetSelected():
-            CurHostid = GetSelected()
-            SetIDUnSelected(CurHostid)
-            ConnList[-1]['isSelected'] = True
-            continue
-        CurHostid = GetSelected()
-        SetIDUnSelected(CurHostid)
-        SetIDSelected(CurHostid - 1)
-
-    elif (cmd == _ENTER):
+    elif (cmd == 'c' or cmd == 'C'):
         selhost = findhost(GetSelected())
         id = selhost['id']
         ConnectHost(id)

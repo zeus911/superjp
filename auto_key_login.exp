@@ -1,0 +1,17 @@
+#!/usr/bin/expect -f
+set host [lindex $argv 0]
+set user [lindex $argv 1]
+set key [lindex $argv 2]
+set port [lindex $argv 3]
+set timeout -1
+spawn ssh -i $key -p $port $user@$host
+match_max 100000
+
+expect {
+
+"yes/no" { send "yes\r"; exp_continue }
+$user interact
+
+}
+
+
