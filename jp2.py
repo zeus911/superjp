@@ -19,7 +19,7 @@ def list():
         hostname = element.get('host')
         remarks = element.get('remarks')
         if element['isSelected']:
-            print use_style(str(id) + ":" + hostname + "|" + "     备注   " + "|" + remarks, mode='bold',fore='red')
+            print use_style("==>>" + "   "  + str(id) + ":" + hostname + "|" + "     备注   " + "|" + remarks, mode='bold',fore='red')
         else:
             print use_style(str(id) + ":" + hostname + "|" + "     备注   " + "|" + remarks, fore='green')
 
