@@ -90,7 +90,6 @@ while running:
     list()
     print("Press 'Q' or 'q' to quit:\n")
     cmd = repr(readchar.readchar())
-    print cmd
     if (cmd == _ESC1 or cmd == _ESC2):
         break;
     elif cmd.isdigit():
@@ -111,7 +110,7 @@ while running:
         SetIDSelected(CurHostid + 1)
 
     elif (cmd == _UP):
-        if ConnList[1].get('id') == GetSelected():
+        if ConnList[0].get('id') == GetSelected():
             CurHostid = GetSelected()
             SetIDUnSelected(CurHostid)
             ConnList[-1]['isSelected'] = True
