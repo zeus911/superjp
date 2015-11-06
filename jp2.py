@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/bin/python
 #coding:utf-8
 
 __author__ = 'laopangzhang'
@@ -7,6 +7,8 @@ from conf import *
 import  os
 from output import *
 import readchar
+import time
+
 
 running=True
 ConnList[0]['isSelected'] = True
@@ -19,7 +21,7 @@ def list():
         hostname = element.get('host')
         remarks = element.get('remarks')
         if element['isSelected']:
-            print use_style("==>>" + "   "  + str(id) + ":" + hostname + "|" + "     备注   " + "|" + remarks, mode='bold',fore='red')
+            print use_style("==>>" + "   "  + str(id) + ":" + hostname + "|" + "     备注   " + "|" + remarks + "  " +"<<==", mode='bold',fore='red')
         else:
             print use_style(str(id) + ":" + hostname + "|" + "     备注   " + "|" + remarks, fore='green')
 
@@ -79,17 +81,46 @@ def ConnectHost(id):
 #
 _UP = "'k'"
 _DOWN = "'j'"
-
 _ESC1 = "'q'"
 _ESC2 = "'q'"
-
 _ENTER = "'\\r'"
 
+
+keystr = ""
+while True:
+    char =  repr(readchar.readchar())
+    if char[1] == " ":
+        os.system("cat host.list")
+        keyword = ""
+        while True:
+            key =  repr(readchar.readchar())
+            if key[1] == " ":
+                break
+            else:
+                keyword += key[1]
+            os.system("clear")
+            print keyword
+            cmd = "cat host.list | grep " + '"' + keyword + '"'
+            print cmd
+            os.system(cmd)
+
+    break
+
+
+
+
+
+
+
+'''
 while running:
     os.system('clear')
     list()
     print("Press 'Q' or 'q' to quit:\n")
     cmd = repr(readchar.readchar())
+    if cmd == "'<'":
+        keystr += cmd
+
     if (cmd == _ESC1 or cmd == _ESC2):
         break;
     elif cmd.isdigit():
@@ -131,8 +162,7 @@ while running:
     else:
         continue;
 
-
-
+'''
 
 
 
