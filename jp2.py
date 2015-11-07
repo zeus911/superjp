@@ -1,4 +1,4 @@
-#!/bin/python
+#!/usr/bin/python
 #coding:utf-8
 
 __author__ = 'laopangzhang'
@@ -87,6 +87,21 @@ _ENTER = "'\\r'"
 
 
 keystr = ""
+seleid = ""
+#getid_cmd = "cat host.list|awk -F : '{print $1}' |sed ':a;N;$!ba;s/\n/:/g'"
+
+
+
+
+
+def getscreentofile(host):
+    f = open("selectedhost.list",'w')
+    print >>f,host
+    f.close()
+
+
+
+
 while True:
     char =  repr(readchar.readchar())
     if char[1] == " ":
@@ -101,8 +116,13 @@ while True:
             os.system("clear")
             print keyword
             cmd = "cat host.list | grep " + '"' + keyword + '"'
+            getid_cmd = "cat host.list |grep %s |awk -F : '{print $1}'|sed ':a;N;$!ba;s/\\n/:/g' " % (keyword)
             print cmd
-            os.system(cmd)
+            print getid_cmd
+            host = os.system(cmd)
+            getscreentofile(host)
+
+            seleid = os.system(getid_cmd)
 
     break
 
