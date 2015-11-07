@@ -8,7 +8,8 @@ import  os
 from output import *
 import readchar
 import time
-
+import subprocess
+from blessings import Terminal
 
 
 
@@ -117,7 +118,6 @@ _ESC1 = "'q'"
 _ESC2 = "'q'"
 _ENTER = "'\\r'"
 
-
 keystr = ""
 seleid = ""
 #getid_cmd = "cat host.list|awk -F : '{print $1}' |sed ':a;N;$!ba;s/\n/:/g'"
@@ -131,8 +131,42 @@ def getscreentofile(host):
     print >>f,host
     f.close()
 
+def interactsys(cmd):
+    p = subprocess.Popen(cmd,shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    buff = ""
+    while True:
+        line = p.stdout.readline()
+        if line == '' and p.poll() != None:
+            break
+        buff += line
+    return buff.strip()
+
+def printstyle(cmd,keyword):
+    p = subprocess.Popen(cmd,shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    buff = ""
+    while True:
+        line = p.stdout.readline().strip()
+        outputs = line.split(keyword)
+
+        for output in outputs:
+            if outputs[len(outputs) - 1] == output:
+                print output.strip()
+            else:
+                t = Terminal()
+                colortext = output.strip() + '{t.red}' + keyword.strip() + '{t.normal}'.stripe()
+                print colortext.format(t=t).strip()
+                print t.wingo(2)
+                #print output,
+                #print use_style(keyword,mode = 'bold',fore = 'red'),
+
+        if line == '' and p.poll() != None:
+            break
+
+
+
 
 genhostlist()
+
 
 while True:
     char =  repr(readchar.readchar())
@@ -141,18 +175,24 @@ while True:
         keyword = ""
         while True:
             key =  repr(readchar.readchar())
-            if key[1] == " ":
+
+            if key[1] == "*":
+                keyword = keyword[0:-1]
+            elif key[1] == " ":
                 break
             else:
                 keyword += key[1]
+
+                
             os.system("clear")
             print keyword
             cmd = "cat host.list | grep -i '%s'" % (keyword)
+            getselnum = "cat host.list | grep -i '%s'|wc -l" % (keyword)
             getid_cmd = "cat host.list |grep -i '%s' |awk -F : '{print $1}'|sed ':a;N;$!ba;s/\\n/:/g' > ids.hosts " % (keyword)
-            print cmd
-            print getid_cmd
-            host = os.system(cmd)
-            getscreentofile(host)
+            if interactsys(getselnum) == "0":
+                print use_style("Warnning!!!No host selected,press BackSpace",mode = 'bold',fore = 'red' )
+                continue
+            printstyle(cmd,keyword)
 
             seleid = os.system(getid_cmd)
 
