@@ -3,28 +3,60 @@
 
 __author__ = 'laopangzhang'
 
-from conf import *
+from conf import ConnList
 import  os
 from output import *
 import readchar
 import time
 
 
-running=True
-ConnList[0]['isSelected'] = True
+
+
+def getidfromfile(idsifle):
+    f = open(idsifle,'r')
+    ids = f.read()
+    return ids
+
+def genhostlist():
+    os.system("echo '' > host.list")
+    id = 0
+    for host in ConnList:
+        id += 1
+        host['id'] = str(id)
+        hostname = host.get('host')
+        remarks = host.get('remarks')
+        f=open("host.list",'a')
+        f.write(str(id) + ":" + hostname + "     备注   "  +  "|" + remarks  + '\n')
+        f.close()
+
+
+
+def getmatchlist(ids):
+    id = 0
+    hostids = ids.strip().split(":")
+    SelectedList = []
+    for host in ConnList:
+        id += 1
+        host['id'] = str(id)
+        for hostid in hostids:
+          if hostid == host['id']:
+             SelectedList.append(ConnList[id-1])
+    return SelectedList
+
+
+
 
 def list():
     id = 0
     for element in ConnList:
         id += 1
-        element['id'] = id;
+        element['id'] = id
         hostname = element.get('host')
         remarks = element.get('remarks')
         if element['isSelected']:
             print use_style("==>>" + "   "  + str(id) + ":" + hostname + "|" + "     备注   " + "|" + remarks + "  " +"<<==", mode='bold',fore='red')
         else:
             print use_style(str(id) + ":" + hostname + "|" + "     备注   " + "|" + remarks, fore='green')
-
 
 
 def findhost(num):
@@ -100,7 +132,7 @@ def getscreentofile(host):
     f.close()
 
 
-
+genhostlist()
 
 while True:
     char =  repr(readchar.readchar())
@@ -115,8 +147,8 @@ while True:
                 keyword += key[1]
             os.system("clear")
             print keyword
-            cmd = "cat host.list | grep " + '"' + keyword + '"'
-            getid_cmd = "cat host.list |grep %s |awk -F : '{print $1}'|sed ':a;N;$!ba;s/\\n/:/g' " % (keyword)
+            cmd = "cat host.list | grep -i '%s'" % (keyword)
+            getid_cmd = "cat host.list |grep -i '%s' |awk -F : '{print $1}'|sed ':a;N;$!ba;s/\\n/:/g' > ids.hosts " % (keyword)
             print cmd
             print getid_cmd
             host = os.system(cmd)
@@ -127,12 +159,22 @@ while True:
     break
 
 
+ids = getidfromfile('ids.hosts')
 
+print ids
 
-
-
-
+ConnList = getmatchlist(ids)
 '''
+for host in ConnList:
+    print host
+'''
+
+
+running=True
+ConnList[0]['isSelected'] = True
+
+
+
 while running:
     os.system('clear')
     list()
@@ -181,8 +223,6 @@ while running:
 
     else:
         continue;
-
-'''
 
 
 
