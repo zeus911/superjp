@@ -120,7 +120,6 @@ _ENTER = "'\\r'"
 
 keystr = ""
 seleid = ""
-#getid_cmd = "cat host.list|awk -F : '{print $1}' |sed ':a;N;$!ba;s/\n/:/g'"
 
 
 
@@ -140,24 +139,20 @@ def interactsys(cmd):
             break
         buff += line
     return buff.strip()
-
+t = Terminal()
 def printstyle(cmd,keyword):
     p = subprocess.Popen(cmd,shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     buff = ""
     while True:
         line = p.stdout.readline().strip()
         outputs = line.split(keyword)
-
+        colortext = ""
         for output in outputs:
-            if outputs[len(outputs) - 1] == output:
-                print output.strip()
-            else:
-                t = Terminal()
-                colortext = output.strip() + '{t.red}' + keyword.strip() + '{t.normal}'.stripe()
-                print colortext.format(t=t).strip()
-                print t.wingo(2)
-                #print output,
-                #print use_style(keyword,mode = 'bold',fore = 'red'),
+           colortext += "{t.normal}" + output.strip() + '{t.red}' + "{t.bold}" + keyword.strip() + "{t.normal}".strip()
+        print colortext[0:-((len(keyword + "{t.normal}")  ))].strip().format(t=t)
+        #print t.wingo(2).strip()
+           #print output,
+           #print use_style(keyword,mode = 'bold',fore = 'red'),
 
         if line == '' and p.poll() != None:
             break
@@ -175,8 +170,7 @@ while True:
         keyword = ""
         while True:
             key =  repr(readchar.readchar())
-
-            if key[1] == "*":
+            if key[1] == "*" :
                 keyword = keyword[0:-1]
             elif key[1] == " ":
                 break
