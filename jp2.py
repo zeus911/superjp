@@ -156,39 +156,42 @@ def printstyle(cmd,keyword):
 
         if line == '' and p.poll() != None:
             break
-
-
-
-
 genhostlist()
 
 
 while True:
-    char =  repr(readchar.readchar())
-    if char[1] == " ":
-        os.system("cat host.list")
-        keyword = ""
-        while True:
-            key =  repr(readchar.readchar())
-            if key[1] == "*" :
-                keyword = keyword[0:-1]
-            elif key[1] == " ":
-                break
-            else:
-                keyword += key[1]
+    os.system("clear")
+    os.system("cat host.list")
+    keyword = ""
+    while True:
+        key =  repr(readchar.readchar())
+        if key[1] == "*" :
+            keyword = keyword[0:-1]
+            if len(keyword) == 0:
+               os.system("clear")
+               print use_style("Warnning!!!NO char to delete!",mode = 'bold',fore = 'red' )
+               os.system("cat host.list")
+               continue
+        elif key[1] == " ":
+            if len(keyword) == 0:
+                getid_cmd = "cat host.list |grep -i '%s' |awk -F : '{print $1}'|sed ':a;N;$!ba;s/\\n/:/g' > ids.hosts " % (keyword)
+                seleid = os.system(getid_cmd)
 
-                
-            os.system("clear")
-            print keyword
-            cmd = "cat host.list | grep -i '%s'" % (keyword)
-            getselnum = "cat host.list | grep -i '%s'|wc -l" % (keyword)
-            getid_cmd = "cat host.list |grep -i '%s' |awk -F : '{print $1}'|sed ':a;N;$!ba;s/\\n/:/g' > ids.hosts " % (keyword)
-            if interactsys(getselnum) == "0":
-                print use_style("Warnning!!!No host selected,press BackSpace",mode = 'bold',fore = 'red' )
-                continue
-            printstyle(cmd,keyword)
+            break
+        else:
+            keyword += key[1]
 
-            seleid = os.system(getid_cmd)
+
+        os.system("clear")
+        print keyword
+        cmd = "cat host.list | grep -i '%s'" % (keyword)
+        getselnum = "cat host.list | grep -i '%s'|wc -l" % (keyword)
+        getid_cmd = "cat host.list |grep -i '%s' |awk -F : '{print $1}'|sed ':a;N;$!ba;s/\\n/:/g' > ids.hosts " % (keyword)
+        if interactsys(getselnum) == "0":
+            print use_style("Warnning!!!No host has matched!,press BackSpace",mode = 'bold',fore = 'red' )
+            continue
+        printstyle(cmd,keyword)
+        seleid = os.system(getid_cmd)
 
     break
 
