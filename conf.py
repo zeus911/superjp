@@ -27,10 +27,14 @@ ConnList=[
     {'id':'','user':'zlp','host':'10.0.201.112','port':'932','key':'/root/.ssh/eckey','remarks':'test_crm4_mysql','isSelected':False},
     {'id':'','user':'zlp','host':'10.0.201.141','port':'932','key':'/root/.ssh/eckey','remarks':'test_base_mysql','isSelected':False},
     {'id':'','user':'zlp','host':'10.0.201.199','port':'932','key':'/root/.ssh/eckey','remarks':'test_stat_mysql','isSelected':False},
+    {'id':'','user':'zlp','host':'10.0.200.168','port':'932','key':'/root/.ssh/eckey','remarks':'test_haproxy1','isSelected':False},
+    {'id':'','user':'zlp','host':'10.0.201.232','port':'932','key':'/root/.ssh/eckey','remarks':'test_haproxy2','isSelected':False},
     {'id':'','user':'root','host':'10.0.200.51','port':'22','password':'123456','remarks':'dev_java51','isSelected':False},
     {'id':'','user':'root','host':'10.0.200.52','port':'22','password':'123456','remarks':'dev-java52','isSelected':False},
     {'id':'','user':'root','host':'10.0.200.53','port':'22','password':'123456','remarks':'dev-java53','isSelected':False},
     {'id':'','user':'root','host':'10.0.200.54','port':'22','password':'123456','remarks':'dev-java54','isSelected':False},
+
+    {'id':'','user':'root','host':'121.201.96.81','port':'932','key':'/root/.ssh/eckey','remarks':'producttion_ssh_tunnel','isSelected':False},
   
             ]
 

@@ -161,14 +161,13 @@ genhostlist()
 
 os.system("clear")
 os.system("cat host.list")
-limit = " ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890_-:!@#$%^&*()+_<>[]{}"
+limit = " ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890_-:!#$%^&*()+_"
 keyword = ""
 while True:
     key =  repr(readchar.readchar())
     if not (key[1]  in limit):
        os.system("clear")
-       print use_style("Warnning!! Invalide Char %s!" % (key[1]),mode = 'bold',fore = 'red' )
-       print keyword
+       print use_style("Warnning!! Invalide Char!",mode = 'bold',fore = 'red' )
        os.system("cat host.list")
        continue 
     elif key[1] == "*" :
