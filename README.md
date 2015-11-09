@@ -3,6 +3,9 @@
 
 a powerful ssh connection tool.It can easily manage thousands of server host!
 
+
+
+
 1.pip install blessings
 
 2. edit conf.py. add your password or key of you server to it.
