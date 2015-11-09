@@ -193,7 +193,7 @@ while True:
     getselnum = "cat host.list | grep  '%s'|wc -l" % (keyword)
     if interactsys(getselnum) == "0":
         os.system("clear")
-        print use_style("Warnning!!!No host has matched!,press BackSpace",mode = 'bold',fore = 'red' )
+        print use_style("Warnning!!!No host has matched to %s!" % keyword,mode = 'bold',fore = 'red' )
         continue
 
     os.system("clear")
