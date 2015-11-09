@@ -16,10 +16,11 @@ from blessings import Terminal
 def getidfromfile(idsifle):
     f = open(idsifle,'r')
     ids = f.read()
+    f.close
     return ids
 
 def genhostlist():
-    os.system("echo '' > host.list")
+    os.system("cat /dev/null > host.list")
     id = 0
     for host in ConnList:
         id += 1
@@ -139,9 +140,12 @@ def interactsys(cmd):
             break
         buff += line
     return buff.strip()
-t = Terminal()
+
+
 def printstyle(cmd,keyword):
-    p = subprocess.Popen(cmd,shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    t = Terminal()
+    p = subprocess.Popen(cmd,shell=True, stdout=subprocess.PIPE)
+    p.wait()
     buff = ""
     while True:
         line = p.stdout.readline().strip()
@@ -149,16 +153,15 @@ def printstyle(cmd,keyword):
         colortext = ""
         for output in outputs:
            colortext += "{t.normal}" + output.strip() + '{t.red}' + "{t.bold}" + keyword.strip() + "{t.normal}".strip()
-        print colortext[0:-((len(keyword + "{t.normal}")  ))].strip().format(t=t)
+        print colortext[0:-len(keyword + "{t.normal}")].strip().format(t=t)
         #print t.wingo(2).strip()
            #print output,
            #print use_style(keyword,mode = 'bold',fore = 'red'),
 
         if line == '' and p.poll() != None:
             break
+
 genhostlist()
-
-
 os.system("clear")
 os.system("cat host.list")
 limit = " ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890_-:*.|"
@@ -180,29 +183,31 @@ while True:
            continue
     elif key[1] == " ":
         if len(keyword) == 0:
-            getid_cmd = "cat host.list |grep -i '%s' |awk -F : '{print $1}'|sed ':a;N;$!ba;s/\\n/:/g' > ids.hosts " % (keyword)
+            getid_cmd = "cat host.list |grep '%s' |awk -F : '{print $1}'|sed ':a;N;$!ba;s/\\n/:/g' > ids.hosts " % (keyword)
             seleid = os.system(getid_cmd)
-
         break
     else:
         keyword += key[1]
 
 
-    os.system("clear")
-    print keyword
-    cmd = "cat host.list | grep -i '%s'" % (keyword)
-    getselnum = "cat host.list | grep -i '%s'|wc -l" % (keyword)
-    getid_cmd = "cat host.list |grep -i '%s' |awk -F : '{print $1}'|sed ':a;N;$!ba;s/\\n/:/g' > ids.hosts " % (keyword)
+    getselnum = "cat host.list | grep  '%s'|wc -l" % (keyword)
     if interactsys(getselnum) == "0":
+        os.system("clear")
         print use_style("Warnning!!!No host has matched!,press BackSpace",mode = 'bold',fore = 'red' )
         continue
+
+    os.system("clear")
+    print keyword
+    cmd = "cat host.list | grep  '%s'" % (keyword)
+    getid_cmd = "cat host.list |grep  '%s' |awk -F : '{print $1}'|sed ':a;N;$!ba;s/\\n/:/g' > ids.hosts " % (keyword)
+
     printstyle(cmd,keyword)
+    #os.system(cmd)
     seleid = os.system(getid_cmd)
 
 
 ids = getidfromfile('ids.hosts')
 
-print ids
 
 ConnList = getmatchlist(ids)
 '''

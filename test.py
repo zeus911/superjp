@@ -9,18 +9,15 @@ import string
 
 from blessings import Terminal
 
-'''
+
 t = Terminal()
 
 print t.bold('Hi there!')
 print t.bold_red_on_bright_green('It hurts my eyes!')
 
 print '{t.bold}All your {t.red}bold and red base{t.normal}'.format(t=t)
-print t.wingo(2)
-'''
+#print t.wingo(2)
 
-a='laopangzhang'
-print a.find('zhang')
 
 '''
 cmd = "cat host.list|wc -l"
