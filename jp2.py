@@ -161,7 +161,7 @@ genhostlist()
 
 os.system("clear")
 os.system("cat host.list")
-limit = " ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890_-:!@#$%^&*()+_<>[]{}"
+limit = " ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890_-:*.|"
 keyword = ""
 while True:
     key =  repr(readchar.readchar())
