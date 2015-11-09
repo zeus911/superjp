@@ -171,7 +171,7 @@ def printstyle(cmd,keyword):
 genhostlist()
 os.system("clear")
 os.system("cat %s" % (hostlist))
-limit = " ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890_-:*.|"
+limit = " ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890_-:*.|\/\\"
 keyword = ""
 while True:
     key =  repr(readchar.readchar())
@@ -188,7 +188,7 @@ while True:
            print use_style("Warnning!!!NO char to delete!",mode = 'bold',fore = 'red' )
            os.system("cat %s" % (hostlist))
            continue
-    elif key[1] == " ":
+    elif key == _ENTER:
         if len(keyword) == 0:
             getid_cmd = "cat hostlist |grep '%s' |awk -F : '{print $1}'|sed ':a;N;$!ba;s/\\n/:/g' > %s " % (keyword,idshost)
             seleid = os.system(getid_cmd)
@@ -217,6 +217,7 @@ ids = getidfromfile(idshost)
 
 
 ConnList = getmatchlist(ids)
+
 '''
 for host in ConnList:
     print host
