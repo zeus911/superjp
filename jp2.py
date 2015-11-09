@@ -13,6 +13,13 @@ from blessings import Terminal
 
 
 
+
+pwd = os.path.split(os.path.realpath(__file__))[0]
+hostlist = pwd +  "/host.list"
+selectedhost =   pwd + "/selectedhost.list"
+idshost = pwd + "/ids.hosts"
+
+
 def getidfromfile(idsifle):
     f = open(idsifle,'r')
     ids = f.read()
@@ -20,14 +27,14 @@ def getidfromfile(idsifle):
     return ids
 
 def genhostlist():
-    os.system("cat /dev/null > host.list")
+    os.system("cat /dev/null > %s" % (hostlist) )
     id = 0
     for host in ConnList:
         id += 1
         host['id'] = str(id)
         hostname = host.get('host')
         remarks = host.get('remarks')
-        f=open("host.list",'a')
+        f=open(hostlist,'a')
         f.write(str(id) + ":" + hostname + "     备注   "  +  "|" + remarks  + '\n')
         f.close()
 
@@ -127,7 +134,7 @@ seleid = ""
 
 
 def getscreentofile(host):
-    f = open("selectedhost.list",'w')
+    f = open(selectedhost,'w')
     print >>f,host
     f.close()
 
@@ -163,7 +170,7 @@ def printstyle(cmd,keyword):
 
 genhostlist()
 os.system("clear")
-os.system("cat host.list")
+os.system("cat %s" % (hostlist))
 limit = " ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890_-:*.|"
 keyword = ""
 while True:
@@ -172,25 +179,25 @@ while True:
        os.system("clear")
        print use_style("Warnning!! Invalide Char %s!" % (key[1]),mode = 'bold',fore = 'red' )
        print keyword
-       os.system("cat host.list")
+       os.system("cat %s" % (hostlist))
        continue 
     elif key[1] == "*" :
         keyword = keyword[0:-1]
         if len(keyword) == 0:
            os.system("clear")
            print use_style("Warnning!!!NO char to delete!",mode = 'bold',fore = 'red' )
-           os.system("cat host.list")
+           os.system("cat %s" % (hostlist))
            continue
     elif key[1] == " ":
         if len(keyword) == 0:
-            getid_cmd = "cat host.list |grep '%s' |awk -F : '{print $1}'|sed ':a;N;$!ba;s/\\n/:/g' > ids.hosts " % (keyword)
+            getid_cmd = "cat hostlist |grep '%s' |awk -F : '{print $1}'|sed ':a;N;$!ba;s/\\n/:/g' > %s " % (keyword,idshost)
             seleid = os.system(getid_cmd)
         break
     else:
         keyword += key[1]
 
 
-    getselnum = "cat host.list | grep  '%s'|wc -l" % (keyword)
+    getselnum = "cat %s | grep  '%s'|wc -l" % (hostlist,keyword)
     if interactsys(getselnum) == "0":
         os.system("clear")
         print use_style("Warnning!!!No host has matched to %s!" % keyword,mode = 'bold',fore = 'red' )
@@ -198,15 +205,15 @@ while True:
 
     os.system("clear")
     print keyword
-    cmd = "cat host.list | grep  '%s'" % (keyword)
-    getid_cmd = "cat host.list |grep  '%s' |awk -F : '{print $1}'|sed ':a;N;$!ba;s/\\n/:/g' > ids.hosts " % (keyword)
+    cmd = "cat %s | grep  '%s'" % (hostlist,keyword)
+    getid_cmd = "cat %s |grep  '%s' |awk -F : '{print $1}'|sed ':a;N;$!ba;s/\\n/:/g' > %s " % (hostlist,keyword,idshost)
 
     printstyle(cmd,keyword)
     #os.system(cmd)
     seleid = os.system(getid_cmd)
 
 
-ids = getidfromfile('ids.hosts')
+ids = getidfromfile(idshost)
 
 
 ConnList = getmatchlist(ids)
@@ -264,7 +271,6 @@ while running:
         ConnectHost(id)
     else:
         continue;
-
 
 
 
