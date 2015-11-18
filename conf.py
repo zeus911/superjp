@@ -31,12 +31,16 @@ ConnList=[
     {'id':'','user':'zlp','host':'10.0.201.199','port':'932','key':'/root/.ssh/eckey','remarks':'test_stat_mysql','isSelected':False},
     {'id':'','user':'zlp','host':'10.0.200.168','port':'932','key':'/root/.ssh/eckey','remarks':'test_haproxy1','isSelected':False},
     {'id':'','user':'zlp','host':'10.0.201.232','port':'932','key':'/root/.ssh/eckey','remarks':'test_haproxy2','isSelected':False},
+    {'id':'','user':'root','host':'192.168.1.222','port':'22','key':'/root/.ssh/eckey','remarks':'test_web_old','isSelected':False},
+    {'id':'','user':'root','host':'192.168.1.230','port':'22','password':'ECadmin2014','remarks':'test_web_old','isSelected':False},
     {'id':'','user':'root','host':'10.0.200.51','port':'22','password':'123456','remarks':'dev_java51','isSelected':False},
     {'id':'','user':'root','host':'10.0.200.52','port':'22','password':'123456','remarks':'dev_java52','isSelected':False},
     {'id':'','user':'root','host':'10.0.200.53','port':'22','password':'123456','remarks':'dev_java53','isSelected':False},
     {'id':'','user':'root','host':'10.0.200.54','port':'22','password':'123456','remarks':'dev_java54','isSelected':False},
 
     {'id':'','user':'root','host':'121.201.96.81','port':'932','key':'/root/.ssh/eckey','remarks':'production_ssh_tunnel','isSelected':False},
+    {'id':'','user':'root','host':'121.201.18.167','port':'932','key':'/root/.ssh/eckey','remarks':'production_5.83_grafana','isSelected':False},
+    {'id':'','user':'root','host':'121.201.96.80','port':'932','key':'/root/.ssh/eckey','remarks':'production_5.80_natios','isSelected':False},
   
             ]
 

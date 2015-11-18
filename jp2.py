@@ -18,7 +18,8 @@ pwd = os.path.split(os.path.realpath(__file__))[0]
 hostlist = pwd +  "/host.list"
 selectedhost =   pwd + "/selectedhost.list"
 idshost = pwd + "/ids.hosts"
-
+autologin_key = pwd + '/auto_key_login.exp'
+autologin_pwd = pwd + '/auto_login.exp'
 
 def getidfromfile(idsifle):
     f = open(idsifle,'r')
@@ -80,10 +81,10 @@ def GetSelected():
             return host.get('id')
 
 def connhost_bykey(ip,user,key,port):
-    os.system('auto_key_login.exp' + ' ' + ip + ' ' + user +  ' '  + key + ' ' + port)
+    os.system(autologin_key + ' ' + ip + ' ' + user +  ' '  + key + ' ' + port)
 
 def connhost_bypwd(ip,user,pwd,port):
-    os.system('auto_login.exp' + ' ' + ip + ' ' + user +  ' '  + pwd + ' ' + port)
+    os.system(autologin_pwd+ ' ' + ip + ' ' + user +  ' '  + pwd + ' ' + port)
 
 def SetIDSelected(id):
     host = findhost(id)
@@ -180,7 +181,7 @@ while True:
        print use_style("Warnning!! Invalide Char %s!" % (key[1]),mode = 'bold',fore = 'red' )
        print keyword
        os.system("cat %s" % (hostlist))
-       continue 
+       continue
     elif key[1] == "*" :
         keyword = keyword[0:-1]
         if len(keyword) == 0:

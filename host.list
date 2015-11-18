@@ -23,8 +23,12 @@
 23:10.0.201.199     备注   |test_stat_mysql
 24:10.0.200.168     备注   |test_haproxy1
 25:10.0.201.232     备注   |test_haproxy2
-26:10.0.200.51     备注   |dev_java51
-27:10.0.200.52     备注   |dev_java52
-28:10.0.200.53     备注   |dev_java53
-29:10.0.200.54     备注   |dev_java54
-30:121.201.96.81     备注   |production_ssh_tunnel
+26:192.168.1.222     备注   |test_web_old
+27:192.168.1.230     备注   |test_web_old
+28:10.0.200.51     备注   |dev_java51
+29:10.0.200.52     备注   |dev_java52
+30:10.0.200.53     备注   |dev_java53
+31:10.0.200.54     备注   |dev_java54
+32:121.201.96.81     备注   |production_ssh_tunnel
+33:121.201.18.167     备注   |production_5.83_grafana
+34:121.201.96.80     备注   |production_5.80_natios
