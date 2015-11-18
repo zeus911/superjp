@@ -235,8 +235,6 @@ while running:
     list()
     print("Press 'Q' or 'q' to quit:\n")
     cmd = repr(readchar.readchar())
-    if cmd == "'<'":
-        keystr += cmd
 
     if (cmd == _ESC1 or cmd == _ESC2):
         break;
@@ -244,8 +242,6 @@ while running:
         if (int(cmd) >= 0 and int(cmd) <= 100):
             if ConnectHost(int(cmd)):
                 continue
-
-
 
     elif (cmd == _DOWN):
         if ConnList[-1].get('id') == GetSelected():
