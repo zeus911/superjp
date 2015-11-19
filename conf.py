@@ -13,6 +13,7 @@ ConnList=[
     {'id':'','user':'zlp','host':'10.0.201.217','port':'932','key':'/root/.ssh/eckey','remarks':'test_javaBuild','isSelected':False},
     {'id':'','user':'zlp','host':'10.0.201.197','port':'932','key':'/root/.ssh/eckey','remarks':'test_lnmp1','isSelected':False},
     {'id':'','user':'zlp','host':'10.0.201.185','port':'932','key':'/root/.ssh/eckey','remarks':'test_lnmp2','isSelected':False},
+    {'id':'','user':'zlp','host':'10.0.201.174','port':'932','key':'/root/.ssh/eckey','remarks':'test_lnmp3','isSelected':False},
     {'id':'','user':'zlp','host':'10.0.200.182','port':'932','key':'/root/.ssh/eckey','remarks':'test_ldap_coreseek','isSelected':False},
     {'id':'','user':'zlp','host':'puppettestmaster.workec.com','port':'932','key':'/root/.ssh/eckey','remarks':'test_puppet','isSelected':False},
     {'id':'','user':'zlp','host':'10.0.200.188','port':'932','key':'/root/.ssh/eckey','remarks':'test_www_datasource','isSelected':False},
@@ -41,7 +42,7 @@ ConnList=[
     {'id':'','user':'root','host':'121.201.96.81','port':'932','key':'/root/.ssh/eckey','remarks':'production_ssh_tunnel','isSelected':False},
     {'id':'','user':'root','host':'121.201.18.167','port':'932','key':'/root/.ssh/eckey','remarks':'production_5.83_grafana','isSelected':False},
     {'id':'','user':'root','host':'121.201.96.80','port':'932','key':'/root/.ssh/eckey','remarks':'production_5.80_natios','isSelected':False},
-  
+
             ]
 
 

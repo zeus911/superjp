@@ -116,11 +116,6 @@ def ConnectHost(id):
             connhost_bypwd(ip,user,pwd,port)
     #exit()
 
-#
-#list()
-#print findhost(3)
-#
-#
 _UP = "'k'"
 _DOWN = "'j'"
 _ESC1 = "'q'"

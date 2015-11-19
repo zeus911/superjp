@@ -1,0 +1,59 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+ConnList	conf.py	/^ConnList=[$/;"	v
+ConnList	jp2.py	/^ConnList = getmatchlist(ids)$/;"	v
+ConnectHost	jp2.py	/^def ConnectHost(id):$/;"	f
+CurHostid	jp2.py	/^            CurHostid = GetSelected()$/;"	v
+CurHostid	jp2.py	/^        CurHostid = GetSelected()$/;"	v
+GetSelected	jp2.py	/^def GetSelected():$/;"	f
+STYLE	output.py	/^STYLE = {$/;"	v
+SetIDSelected	jp2.py	/^def SetIDSelected(id):$/;"	f
+SetIDUnSelected	jp2.py	/^def SetIDUnSelected(id):$/;"	f
+_DOWN	jp2.py	/^_DOWN = "'j'"$/;"	v
+_ENTER	jp2.py	/^_ENTER = "'\\\\r'"$/;"	v
+_ESC1	jp2.py	/^_ESC1 = "'q'"$/;"	v
+_ESC2	jp2.py	/^_ESC2 = "'q'"$/;"	v
+_UP	jp2.py	/^_UP = "'k'"$/;"	v
+__author__	conf.py	/^__author__ = 'laopangzhang'$/;"	v
+__author__	jp2.py	/^__author__ = 'laopangzhang'$/;"	v
+__author__	output.py	/^__author__ = 'laopangzhang'$/;"	v
+autologin_key	jp2.py	/^autologin_key = pwd + '\/auto_key_login.exp'$/;"	v
+autologin_pwd	jp2.py	/^autologin_pwd = pwd + '\/auto_login.exp'$/;"	v
+cmd	jp2.py	/^    cmd = "cat %s | grep  '%s'" % (hostlist,keyword)$/;"	v
+cmd	jp2.py	/^    cmd = repr(readchar.readchar())$/;"	v
+connhost_bykey	jp2.py	/^def connhost_bykey(ip,user,key,port):$/;"	f
+connhost_bypwd	jp2.py	/^def connhost_bypwd(ip,user,pwd,port):$/;"	f
+findhost	jp2.py	/^def findhost(num):$/;"	f
+genhostlist	jp2.py	/^def genhostlist():$/;"	f
+getid_cmd	jp2.py	/^            getid_cmd = "cat hostlist |grep '%s' |awk -F : '{print $1}'|sed ':a;N;$!ba;s\/\\\\n\/:\/g' > %s " % (keyword,idshost)$/;"	v
+getid_cmd	jp2.py	/^    getid_cmd = "cat %s |grep  '%s' |awk -F : '{print $1}'|sed ':a;N;$!ba;s\/\\\\n\/:\/g' > %s " % (hostlist,keyword,idshost)$/;"	v
+getidfromfile	jp2.py	/^def getidfromfile(idsifle):$/;"	f
+getmatchlist	jp2.py	/^def getmatchlist(ids):$/;"	f
+getscreentofile	jp2.py	/^def getscreentofile(host):$/;"	f
+getselnum	jp2.py	/^    getselnum = "cat %s | grep  '%s'|wc -l" % (hostlist,keyword)$/;"	v
+hostlist	jp2.py	/^hostlist = pwd +  "\/host.list"$/;"	v
+id	jp2.py	/^        id = selhost['id']$/;"	v
+ids	jp2.py	/^ids = getidfromfile(idshost)$/;"	v
+idshost	jp2.py	/^idshost = pwd + "\/ids.hosts"$/;"	v
+interactsys	jp2.py	/^def interactsys(cmd):$/;"	f
+key	jp2.py	/^    key =  repr(readchar.readchar())$/;"	v
+keystr	jp2.py	/^keystr = ""$/;"	v
+keyword	jp2.py	/^        keyword = keyword[0:-1]$/;"	v
+keyword	jp2.py	/^keyword = ""$/;"	v
+limit	jp2.py	/^limit = " ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890_-:*.|\\\/\\\\"$/;"	v
+list	jp2.py	/^def list():$/;"	f
+printstyle	jp2.py	/^def printstyle(cmd,keyword):$/;"	f
+pwd	jp2.py	/^pwd = os.path.split(os.path.realpath(__file__))[0]$/;"	v
+running	jp2.py	/^running=True$/;"	v
+selectedhost	jp2.py	/^selectedhost =   pwd + "\/selectedhost.list"$/;"	v
+seleid	jp2.py	/^            seleid = os.system(getid_cmd)$/;"	v
+seleid	jp2.py	/^    seleid = os.system(getid_cmd)$/;"	v
+seleid	jp2.py	/^seleid = ""$/;"	v
+selhost	jp2.py	/^        selhost = findhost(GetSelected())$/;"	v
+t	test.py	/^t = Terminal()$/;"	v
+test	output.py	/^def test():$/;"	f
+use_style	output.py	/^def use_style(string, mode='', fore='', back=''):$/;"	f
