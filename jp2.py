@@ -186,13 +186,11 @@ while True:
            continue
     elif key == _ENTER:
         if len(keyword) == 0:
-            getid_cmd = "cat hostlist |grep '%s' |awk -F : '{print $1}'|sed ':a;N;$!ba;s/\\n/:/g' > %s " % (keyword,idshost)
+            getid_cmd = "cat %s|grep '%s' |awk -F : '{print $1}'|sed ':a;N;$!ba;s/\\n/:/g' > %s " % (hostlist,keyword,idshost)
             seleid = os.system(getid_cmd)
         break
     else:
         keyword += key[1]
-
-
     getselnum = "cat %s | grep  '%s'|wc -l" % (hostlist,keyword)
     if interactsys(getselnum) == "0":
         os.system("clear")
@@ -208,17 +206,13 @@ while True:
     #os.system(cmd)
     seleid = os.system(getid_cmd)
 
-
 ids = getidfromfile(idshost)
-
 
 ConnList = getmatchlist(ids)
 
-'''
-for host in ConnList:
-    print host
-'''
 
+# for host in ConnList:
+    # print host
 
 running=True
 ConnList[0]['isSelected'] = True
@@ -264,7 +258,4 @@ while running:
         ConnectHost(id)
     else:
         continue;
-
-
-
 
